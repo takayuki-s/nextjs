@@ -1,12 +1,12 @@
 import path from "path";
 import fs from "fs";
-import matter from "matter";
+import matter from "gray-matter";
 
-const postDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "posts");
 
 // mdファイルのデータを取り出す
-export function getPostData() {
-  const fileNames = fs.readdirSync(postDirectory);
+export function getPostsData() {
+  const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, ""); // ファイル名（id）
 
@@ -19,7 +19,8 @@ export function getPostData() {
     // idとデータを返す
     return {
       id,
-      ...matterResult,
+      ...matterResult.data,
     };
   });
+  return allPostsData;
 }
