@@ -10,6 +10,8 @@ export async function getStaticPaths() {
   };
 }
 
+export function getStaticProps({ params }) {}
+
 export default function Post() {
   return (
     <div>

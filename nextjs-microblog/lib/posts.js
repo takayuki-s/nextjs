@@ -39,7 +39,7 @@ export function getAllPostIds() {
 }
 
 // idに基づいてブログ投稿データを返す
-export async function getPostsData(id) {
+export async function getPostData(id) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContent = fs.readFileSync(fullPath, "utf8");
 
