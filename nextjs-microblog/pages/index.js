@@ -19,6 +19,10 @@ export async function getStaticProps() {
   };
 }
 
+export function getStaticProps({ params }) {
+  params.id;
+}
+
 export default function Home({ allPostsData }) {
   return (
     <Layout>
