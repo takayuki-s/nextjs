@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import { getAllPostIds } from "../../lib/posts";
+import { getAllPostIds, getPostData } from "../../lib/posts";
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -10,12 +10,23 @@ export async function getStaticPaths() {
   };
 }
 
-export function getStaticProps({ params }) {}
+export async function getStaticProps({ params }) {
+  const postData = await getPostData(params.id);
+  return {
+    props: {
+      postData,
+    },
+  };
+}
 
-export default function Post() {
+export default function Post({ postData }) {
   return (
     <div>
-      <Layout>動的ルーティング</Layout>
+      <Layout>{postData.title}</Layout>
+      <br />
+      {postData.date}
+      <br />
+      {postData.blogContentHTML}
     </div>
   );
 }

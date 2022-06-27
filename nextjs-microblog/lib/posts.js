@@ -29,7 +29,7 @@ export function getPostsData() {
 // getStaticPathでreturnで使うpathを取得する
 export function getAllPostIds() {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((filename) => {
+  return fileNames.map((fileName) => {
     return {
       params: {
         id: fileName.replace(/\.md$/, ""),
@@ -45,7 +45,7 @@ export async function getPostData(id) {
 
   const matterResult = matter(fileContent);
 
-  const blogContent = await remark().use(html).process(matterResult);
+  const blogContent = await remark().use(html).process(matterResult.content);
 
   const blogContentHTML = blogContent.toString();
 
