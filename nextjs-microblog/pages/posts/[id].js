@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
+import utilStyle from "../../styles/utils.module.css";
 
 export async function getStaticPaths() {
   const paths = getAllPostIds();
@@ -22,11 +23,14 @@ export async function getStaticProps({ params }) {
 export default function Post({ postData }) {
   return (
     <div>
-      <Layout>{postData.title}</Layout>
+      <Layout>
+        <article>
+          <h1 className={utilStyle.headingXl}>{postData.title}</h1>
+          <div className={utilStyle.lightText}>{postData.date}</div>
+          <div dangerouslySetInnerHTML={{ __html: postData.blogContentHTML }} />
+        </article>
+      </Layout>
       <br />
-      {postData.date}
-      <br />
-      {postData.blogContentHTML}
     </div>
   );
 }
