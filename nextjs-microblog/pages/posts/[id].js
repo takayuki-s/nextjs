@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Layout from "../../components/Layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 import utilStyle from "../../styles/utils.module.css";
@@ -24,6 +25,9 @@ export default function Post({ postData }) {
   return (
     <div>
       <Layout>
+        <Head>
+          <title>{postData.title}</title>
+        </Head>
         <article>
           <h1 className={utilStyle.headingXl}>{postData.title}</h1>
           <div className={utilStyle.lightText}>{postData.date}</div>
