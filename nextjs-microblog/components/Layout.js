@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "./layout.module.css";
 import utilstyles from "../styles/utils.module.css";
+import Link from "next/link";
 
 const name = "Teke Code";
 export const siteTitle = "Next.js Blog";
@@ -31,6 +32,11 @@ function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
+      {!home && (
+        <div>
+          <Link href="/">← ホームへ戻る</Link>
+        </div>
+      )}
     </div>
   );
 }
